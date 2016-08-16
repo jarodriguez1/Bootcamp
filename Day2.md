@@ -35,11 +35,22 @@ Var1      Var2      Freq
 1073092   HLA-DMA      CD74 0.9597321
 
 E. Plot a matrix of the top 20 most correlated genes (hint: consider using the library corrplot)
+test <- w[unique(w2top$Var2),unique(w2top$Var1)]
+corrplot(test, method="color")
 ![Corr Plot](/Corr Plot.png)
 
 ##Clustering
 A. Cluster the top 20 most correlated genes using complete hierarchical clustering and visualize the output tree
+clusters <- hclust(dist(test))
+plot(clusters)
+![Corr Plot](/Dendogram.png)
 
 B. Try using different clustering methods and observe the effects upon how correlated genes are grouped together.
+![Corr Plot](/Dendogram Average.png)
 
 C. If we cluster these genes with complete hierarchical clustering and divide the tree into 4 groups, how many genes are in the largest group? The smallest?
+clusterCut  <- cutree(clusters, 4)
+ COL4A2    COL4A1     DDX3Y    RPS4Y1     USP9Y    EIF1AY LOC440350 LOC339047      CD74 
+        1         1         2         2         2         2         3         3         4 
+  HLA-DMA   JARID1D     ITGB2    LAPTM5 
+        4         2         4         4 
